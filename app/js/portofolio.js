@@ -5,24 +5,19 @@ let portofolio = {
 	getGamesList() {
 		return Object.values(this.games);
 	},
-
 	store() {
-		localStorage.setItem('portofolio', this.games);
+		localStorage.setItem('portofolio', JSON.stringify(this.games));
 	},
-	getFromStorage() {
-		this.games = localStorage.getItem('portofolio');
-
+	reloadFromStorage() {
+		this.games = JSON.parse(localStorage.getItem('portofolio')) || {};
 	},
 	addItem(game) {
-		this.games[game.short] = {
-			name: game.name,
-			short: game.short,
-			url: game.url,
-			tags: game.tags,
-			hasBoosters: game.hasBoosters
-		}
+		this.games[game.short] = new Game(game.name, game.short, game.url, game.tags, game.hasBoosters);
+	},
+	hasItem(shortName) {
+		return shortName in this.games;
 	},
 	removeItem(shortName) {
-		delete games[shortName];
+		delete this.games[shortName];
 	}
 };
