@@ -1,15 +1,20 @@
 let portofolio = {
 
 	games: {},
+
+	getGamesList() {
+		return Object.values(this.games);
+	},
+
 	store() {
-		localStorage.setItem('portofolio', portofolio.games);
+		localStorage.setItem('portofolio', this.games);
 	},
 	getFromStorage() {
-		games = localStorage.getItem('portofolio');
+		this.games = localStorage.getItem('portofolio');
 
 	},
 	addItem(game) {
-		games[game.short] = {
+		this.games[game.short] = {
 			name: game.name,
 			short: game.short,
 			url: game.url,
