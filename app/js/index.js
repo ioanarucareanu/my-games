@@ -1,82 +1,49 @@
-let games = {};
 
-function getPortofolioGameTemplate(game) {
-	let container = document.createElement('div');
-	let text = document.createTextNode(game.name);
-	let removeButton = document.createElement('button');
-	removeButton.setAttribute('class', 'remove');
-	removeButton.innerHTML = 'Remove from portofolio';
-	removeButton.addEventListener('click', () => {
-		//Remove from memory
-		portofolio.removeItem(game.short);
-		//Remove from list
-		let listItem = container.parentNode;
-		listItem.parentNode.removeChild(listItem);
-		//TODO: update the games collection: in memory + <li>
-	});
-	container.appendChild(text);
-	container.appendChild(removeButton);
-	return container;
+function buildGamesGrid(containerSelector, gamesCollection, paginator) {
+	// let container = document.querySelector(containerSelector);
+	//Fill in current page
+	paginator.loadPage();
+	// container.querySelector('.btn-next').addEventListener('click', () => {
+	// 	paginator.next();
+	// });
+	// container.querySelector('.btn-prev').addEventListener('click', () => {
+	// 	paginator.prev();
+	// });
 }
 
-function getGameTemplate(game) {
-	let container = document.createElement('div');
-	let text = document.createTextNode(game.name);
-	container.appendChild(text);
-	//Add button
-	let addButton = document.createElement('button');
-	addButton.setAttribute('class', 'add');
-	addButton.innerHTML = 'Add to portofolio';
-	addButton.addEventListener('click', () => {
+let portofolio = new Portofolio();
+let kingColl = new KingCollection();
+portofolio.loadGames();
+
+let paginationPortofolio = new Pagination(portofolio, 8, '#portofolio-games', htmlTemplates.getGameTemplate);
+buildGamesGrid('#portofolio-games', portofolio, paginationPortofolio);
+
+
+let paginationKing;
+kingColl.loadGames(() => {
+	//TODO something with err
+	kingColl.markGamesAsUsed(portofolio.getAll());
+	paginationKing = new Pagination(kingColl, 4, '#king-games', htmlTemplates.getGameTemplate);
+	buildGamesGrid('#king-games', kingColl, paginationKing);
+});
+
+//Events
+
+document.querySelector('#king-games').addEventListener('click', function (e) {
+	if (Array.from(e.target.classList).indexOf('btn-add') > -1) {
+		console.log('add from King clicked');
+		let gameId = utils.getAttributeValue(e.target, 'data-game-id');
+		let game = kingColl.getGameById(gameId);
+
 		portofolio.addItem(game);
-		game.portofolio = true;
-		buildGamesList('#portofolio-games .games', portofolio.getGamesList(), getPortofolioGameTemplate);
-	});
-	container.appendChild(addButton);
-	//end add button
-
-	return container;
-}
-
-
-function buildGamesList(listSelector, games, templateFct) {
-	let list = document.querySelector(listSelector);
-	list.innerHTML = '';
-	games.forEach(game => {
-		let listItem = document.createElement('li');
-		let itemTemplate = templateFct(game);
-		listItem.appendChild(itemTemplate);
-		list.appendChild(listItem);
-	});
-}
-
-//Load King games list
-utils.readAllGames((err, data) => {
-	if (err) {
-		console.log('Could not read King\'s games', err);
+		kingColl.useGame(gameId);
+		buildGamesGrid('#portofolio-games', portofolio, paginationPortofolio);
 	}
-	games = data;
-	buildGamesList(`#king-games .games`, Object.values(games), getGameTemplate);
-});
+}, false);
 
-//Load Portofolio with games
-portofolio.reloadFromStorage();
-buildGamesList('#portofolio-games .games', portofolio.getGamesList(), getPortofolioGameTemplate);
-
-let searchKing = document.querySelector('#king-games .searchInput');
-searchKing.addEventListener('keyup', (event) => {
-	let searchText = searchKing.value;
-	buildGamesList(`#king-games .games`, utils.searchGamesByName(Object.values(games), searchText), getGameTemplate);
-});
-
-let searchPortofolio = document.querySelector('#portofolio-games .searchInput');
-searchPortofolio.addEventListener('keyup', (event) => {
-	let searchText = searchPortofolio.value;
-	buildGamesList(`#portofolio-games .games`, utils.searchGamesByName(portofolio.getGamesList(), searchText), getPortofolioGameTemplate);
-});
-
-document.getElementById('save-portofolio').addEventListener('click', () => {
-	portofolio.store();
-});
-
+document.querySelector('#portofolio-games').addEventListener('click', function (e) {
+	if (Array.from(e.target.classList).indexOf('btn-add') > -1) {
+		console.log('add from Portofolio clicked');
+	}
+}, false);
 

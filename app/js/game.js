@@ -1,11 +1,20 @@
-function Game(name, short, url, tags, hasBoosters, portofolio = false) {
-	this.name = name;
-	this.short = short;
-	this.url = url;
-	this.tags = tags;
-	this.hasBoosters = hasBoosters;
-	this.portofolio = portofolio;
-}
+class Game {
 
-Game.prototype.smallImage = () => `http://royal1.midasplayer.com/images/games/${short}/${short}_60x60.gif`;
-Game.prototype.middleImage = () => `http://royal1.midasplayer.com/images/games/${short}/${short}_81x46.gif`;
+	constructor(name, short, url, tags, hasBoosters, used = false) {
+		this.name = name;
+		this.short = short;
+		this.url = url;
+		this.tags = tags;
+		this.hasBoosters = hasBoosters;
+		this.used = used;
+	}
+	smallImage() {
+		return `http://royal1.midasplayer.com/images/games/${this.short}/${this.short}_60x60.gif`
+	}
+	middleImage() {
+		return `http://royal1.midasplayer.com/images/games/${this.short}/${this.short}_81x46.gif`;
+	}
+	thumbnail() {
+		return `http://royal1.midasplayer.com/images/games/${this.short}/${this.short}_170x80.gif`;
+	}
+}

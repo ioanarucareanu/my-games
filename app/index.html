@@ -12,27 +12,33 @@
 	<!--endbuild-->
 </head>
 <body>
-	<div class="flexbox-container">
-		<div class="games-container" id="portofolio-games">
-			<input type="text" name="search" class="searchInput">
-			<ul class="games">
-
-			</ul>
-
-			<button type="button" id="save-portofolio">Save portofolio</button>
+	<div id="portofolio-games">
+		<h3>Portofolio</h3>
+		<div class="grid flex-container"></div>
+		<div>
+			<button type="button" class="btn-prev">Prev</button>
+			<button type="button" class="btn-next">Next</button>
+			page: <span class="page"></span>
 		</div>
+	</div>
 
-		<div class="games-container" id="king-games">
-			<input type="text" name="search" class="searchInput">
-			<ul class="games">
-
-			</ul>
+	<div id="king-games">
+		<h3>King Games</h3>
+		<div class="grid flex-container"></div>
+		<div>
+			<button type="button" class="btn-prev">Prev</button>
+			<button type="button" class="btn-next">Next</button>
+			page: <span class="page"></span>
 		</div>
 	</div>
 
 	<script type="text/javascript" src="js/utils.js"></script>
 	<script type="text/javascript" src="js/game.js"></script>
+	<script type="text/javascript" src="js/gamesCollection.js"></script>
+	<script type="text/javascript" src="js/kingCollection.js"></script>
 	<script type="text/javascript" src="js/portofolio.js"></script>
+	<script type="text/javascript" src="js/templates.js"></script>
+	<script type="text/javascript" src="js/pagination.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
 
 </body>
