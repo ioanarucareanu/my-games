@@ -19,6 +19,9 @@ class Portofolio extends GamesCollection {
 	}
 
 	addItem(game) {
+		if (game.short in this.games) {
+			return;
+		}
 		this.games[game.short] = new Game(game.name, game.short, game.url, game.tags, game.hasBoosters, true);
 		this.gamesIds.push(game.short);
 	}

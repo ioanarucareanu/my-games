@@ -1,9 +1,13 @@
 let htmlTemplates = {
 
 	getGameTemplate(game) {
-		return `<div class="thumbnail">`
-			+ `<figure><img src="${game.thumbnail()}" alt=""/><figcaption>${game.name}</figcaption></figure>`
-			+ `<button type="button" class="btn-add" data-game-id="${game.short}">Add</button>`
+		let className = game.used ? 'hidden' : '';
+		return `<div class="thumbnail ${game.short}">`
+			+ `<a href="#" onclick="openGameView('${game.short}')"><img src="${game.thumbnail()}" class="responsive-image"></a>`
+			+ `<div class="cell-content">`
+			+ `<h4>${game.name}</h4>`
+			+ `<button type="button" class="btn-add ${className}" data-game-id="${game.short}">Add</button>`
+			+ `</div>`
 			+ `</div>`;
 	}
 };

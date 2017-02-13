@@ -1,4 +1,4 @@
-class Pagination {
+class Paginator {
 
 	constructor(collection, itemsPerPage, parentContainerSelector, itemTemplateFct) {
 		this.collection = collection;
@@ -9,11 +9,9 @@ class Pagination {
 		this.currPage = 1;
 
 		this.parentContainer.querySelector('.btn-next').addEventListener('click', () => {
-			console.log('clicked next');
 			this.next();
 		});
 		this.parentContainer.querySelector('.btn-prev').addEventListener('click', () => {
-			console.log('clicked prev');
 			this.prev();
 		});
 	}
@@ -56,17 +54,8 @@ class Pagination {
 
 		pageSpan.innerHTML = this.currPage;
 
-		if (this.currPage == 1) {
-			btnPrev.style.visibility = "hidden";
-		} else {
-			btnPrev.style.visibility = "visible";
-		}
-
-		if (this.currPage == this.numPages()) {
-			btnNext.style.visibility = "hidden";
-		} else {
-			btnNext.style.visibility = "visible";
-		}
+		this.currPage === 1 ? utils.hide(btnPrev) : utils.show(btnPrev);
+		this.currPage === this.numPages() ? utils.hide(btnNext) : utils.show(btnNext);
 	}
 
 	numPages() {

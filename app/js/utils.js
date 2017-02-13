@@ -26,5 +26,13 @@ let utils = {
 		if(attributeName in elem.attributes) {
 			return elem.attributes[attributeName].nodeValue;
 		}
+	},
+
+	hide(elem) {
+		elem.classList.add('hidden');
+	},
+
+	show(elem) {
+		elem.classList.remove('hidden');
 	}
 };

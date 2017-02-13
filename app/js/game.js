@@ -15,6 +15,6 @@ class Game {
 		return `http://royal1.midasplayer.com/images/games/${this.short}/${this.short}_81x46.gif`;
 	}
 	thumbnail() {
-		return `http://royal1.midasplayer.com/images/games/${this.short}/${this.short}_170x80.gif`;
+		return `http://royal1.midasplayer.com/images/games/${this.short}/dumps/screen_${this.short}.gif`;
 	}
 }
