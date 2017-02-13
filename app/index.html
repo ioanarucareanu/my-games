@@ -12,24 +12,41 @@
 	<!--endbuild-->
 </head>
 <body>
-	<div id="portofolio-games" class="container">
-		<h3>Portofolio</h3>
-		<div class="grid"></div>
-		<div>
-			<button type="button" class="btn-prev">Prev</button>
-			<button type="button" class="btn-next">Next</button>
-			page: <span class="page"></span>
+	<div id="header">
+		<div class="menu-item"><a href="#">My stuff</a></div>
+		<div id="icon-container">
+			<img src="images/kingLogo.svg" id="logo" />
 		</div>
+		<div class="menu-item"><a href="#">All stuff</a></div>
+	</div>
+	<div id="portofolio-games" class="container">
+		<div>
+			<h3>Portofolio</h3>
+			<!--<div class="search">-->
+				<input type="search" id="searchPortofolio" results="5" placeholder="Search by name" />
+				<!--<input id="autocomplete" type="text" disabled="disabled" />-->
+			<!--</div>-->
+		</div>
+		<div class="grid"></div>
+		<span class="grid-pagination">
+			<span class="icon icon-prev btn-prev"> < </span>
+			<span class="progress">
+				<span class="curr-page">1</span> / <span class="total-pages">4</span>
+			</span>
+			<span class="icon icon-next btn-next"> > </span>
+		</span>
 	</div>
 
 	<div id="king-games" class="container">
 		<h3>King Games</h3>
 		<div class="grid"></div>
-		<div>
-			<button type="button" class="btn-prev">Prev</button>
-			<button type="button" class="btn-next">Next</button>
-			page: <span class="page"></span>
-		</div>
+		<span class="grid-pagination">
+			<span class="icon icon-prev btn-prev"> < </span>
+			<span class="progress">
+				<span class="curr-page">1</span> / <span class="total-pages">4</span>
+			</span>
+			<span class="icon icon-next btn-next"> > </span>
+		</span>
 	</div>
 
 	<!-- The Modal -->
@@ -37,16 +54,18 @@
 
 		<!-- Modal content -->
 		<div class="modal-content">
-			<div class="modal-header">
+			<!--<div class="modal-header">-->
 				<span class="close">&times;</span>
-				<h2>Modal Header</h2>
-			</div>
-			<div class="modal-body">
-				<p>Some text in the Modal Body</p>
-				<p>Some other text...</p>
-			</div>
+			<!--</div>-->
+			<!--<div class="modal-body">-->
+				<div id="game-screenshot">
+					<img src="" class="responsive-image" />
+				</div>
+				<h2 id="game-name"></h2>
+				<p>Rating</p>
+				<a href="#" id="game-play" class="btnKing">Play now</a>
+			<!--</div>-->
 			<div class="modal-footer">
-				<h3>Modal Footer</h3>
 			</div>
 		</div>
 	</div>

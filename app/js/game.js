@@ -19,4 +19,8 @@ class Game {
 	thumbnail() {
 		return `http://royal1.midasplayer.com/images/games/${this.short}/dumps/screen_${this.short}.gif`;
 	}
+	largeImage() {
+		return `http://royal1.midasplayer.com/images/games/${this.short}/tournamentPage/${this.short}_764x260.jpg`;
+	}
+
 }

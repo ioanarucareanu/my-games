@@ -1,21 +1,98 @@
 body {
     box-sizing: border-box;
-    margin: 30px auto;
+    margin: 1em auto;
     width: 80%;
     color: #595554;
     font: 14px/1.4285 appFont,Arial,sans-serif;
+    background-color: #f7f4ef;
+    background-image: radial-gradient(circle at top,#fff 3%,hsla(0,0%,76%,0) 15%);
+    background-repeat: no-repeat;
+}
+
+body #icon-container {
+    position: relative;
+    /*left: 50%;*/
+    width: 7em;
+    height: 5em;
+    /*margin-left: -3.5em;*/
+}
+
+#header {
+    position:relative;
+    height: 4em;
+    left: 50%;
+    width: 20em;
+    margin-left: -8.5em;
+    line-height: 5em;
+    /*font-size: 2em;*/
+    /*background-color: red;*/
+    /*top: 0;*/
+    /*margin-top: 1em;*/
+}
+
+#header div {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    /*margin: auto 0.5em;*/
+}
+
+#header div.menu-item {
+    margin-top: 1em;
+    width: 5em;
+    text-align: center;
+}
+
+#logo {
+    display: block;
+    width: 100%;
 }
 
 .container {
-    margin: auto;
+    margin: 30px auto;
     max-width: 1200px;
+    display: flex;
+    flex-direction: column;
 }
 
-h3 {
-    text-align: center;
+.container h3 {
+    float: left;
     font-size: 1.65em;
     margin: 0 0 30px;
 }
+
+/*.container .search {*/
+    /*float: right;*/
+    /*!*position: relative;*!*/
+/*}*/
+
+.container #searchPortofolio {
+    background-image: url(../images/searchicon.png);
+    background-position: 10px 12px;
+    background-repeat: no-repeat;
+    width: 40%;
+    font-size: 16px;
+    padding: 12px 20px 12px 42px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+
+    float:right;
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*left: 0;*/
+    /*z-index: 11;*/
+    /*background: transparent;*/
+}
+
+/*.container #autocomplete{*/
+    /*position: absolute;*/
+    /*height: 100px;*/
+    /*top: 2px;*/
+    /*left: 1px;*/
+    /*background: transparent;*/
+    /*z-index: 10;*/
+    /*border: 1px solid green;*/
+/*}*/
 
 .grid {
     margin-top: -20px;
@@ -43,15 +120,12 @@ h3 {
     justify-content: center;
 }
 
-.responsive-image {
-    max-width: 100%;
-}
-
 .thumbnail img {
     display: block;
     width: 100%;
     margin: 0 0 0;
     max-height: 14em;
+    max-width: 100%;
 }
 
 /*.thumbnail:hover img {*/
@@ -75,6 +149,43 @@ h3 {
     }
 }
 
+/* Pagination TODO review */
+
+.grid-pagination {
+    border-radius: 3px;
+    color: #595554;
+    line-height: 1;
+    font-size: 1.2em;
+    margin-top: 20px;
+}
+
+.icon {
+    font-size: 1.2em;
+}
+
+.grid-pagination .btn-prev, .grid-pagination .btn-next {
+    color: #595554;
+    cursor: pointer;
+    text-decoration: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    height: 1em;
+    width: 1em;
+}
+
+.grid-pagination .btn-prev, .grid-pagination .btn-next, .grid-pagination .progress {
+    line-height: 1;
+    box-sizing: content-box;
+    width: auto !important;
+    /*display: inline-block;*/
+    padding: .3em;
+    font-weight: 700;
+}
+
+/* END Pagination */
+
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
@@ -97,7 +208,8 @@ h3 {
     margin: auto;
     padding: 0;
     border: 1px solid #888;
-    width: 80%;
+    width: 90%;
+    max-width: 40em;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
@@ -118,10 +230,12 @@ h3 {
 
 /* The Close Button */
 .close {
-    color: white;
-    float: right;
-    font-size: 28px;
+    color: black;
+    font-size: 2.5em;
     font-weight: bold;
+    top: -0.6em;
+    right: -0.2em;
+    position: absolute;
 }
 
 .close:hover,
@@ -133,7 +247,7 @@ h3 {
 
 .modal-header {
     padding: 2px 16px;
-    background-color: #5cb85c;
+    background-color: #ff6a00;
     color: white;
 }
 
@@ -141,8 +255,32 @@ h3 {
 
 .modal-footer {
     padding: 2px 16px;
-    background-color: #5cb85c;
+    background-color: #ff6a00;
     color: white;
+}
+
+#game-screenshot img {
+    max-width: 100%;
+    display: block;
+    width: 100%;
+    margin: 0 0 0;
+    max-height: 14em;
+}
+
+.btnKing {
+    text-decoration: none;
+    text-align: center;
+    vertical-align: middle;
+    color: #fff;
+    width: 9em;
+    height: 3em;
+    line-height: 3em;
+    box-shadow: inset 0 -4px 0 rgba(0,0,0,.3), 0 4px 6px rgba(0,0,0,.22);
+    border-radius: 2em;
+    background-color: #ff6a00;
+    position: absolute;
+    bottom: 1em;
+    right: 1em;
 }
 
 /* End Modal */

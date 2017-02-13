@@ -5,6 +5,7 @@ class Portofolio extends GamesCollection {
 	constructor() {
 		super();
 		this.readGames();
+		this.paginator = new Paginator(this, 6, '#portofolio-games', htmlTemplates.getGameTemplate);
 	}
 
 	readGames() {

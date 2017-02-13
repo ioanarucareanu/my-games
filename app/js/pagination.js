@@ -14,10 +14,15 @@ class Paginator {
 			grid: parentContainer.querySelector('.grid'),
 			btnNext: parentContainer.querySelector('.btn-next'),
 			btnPrev: parentContainer.querySelector('.btn-prev'),
-			pageSpan: parentContainer.querySelector('.page')
+			pageSpan: parentContainer.querySelector('.curr-page'),
+			totalSpan: parentContainer.querySelector('.total-pages')
 		};
 		this.components.btnNext.onclick = () => this.next();
 		this.components.btnPrev.onclick = () => this.prev();
+	}
+
+	reset() {
+		this.currPage = 1;
 	}
 
 	next() {
@@ -52,17 +57,22 @@ class Paginator {
 		}
 
 		this.components.pageSpan.innerHTML = this.currPage;
+		this.components.totalSpan.innerHTML = this.numPages();
 
 		if (this.currPage === 1) {
 			utils.dom.hide(this.components.btnPrev);
+			// this.components.btnPrev.disabled = true;
 		}
 		else {
 			utils.dom.show(this.components.btnPrev);
+			// this.components.btnPrev.disabled = false;
 		}
 		if (this.currPage === this.numPages()) {
-			utils.dom.hide(this.components.btnNext)
+			utils.dom.hide(this.components.btnNext);
+			// this.components.btnNext.disabled = true;
 		}
 		else {
+			// this.components.btnNext.disabled = false;
 			utils.dom.show(this.components.btnNext)
 		}
 	}

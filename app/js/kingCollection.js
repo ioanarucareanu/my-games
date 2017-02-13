@@ -4,6 +4,7 @@ class KingCollection extends GamesCollection {
 
 	constructor() {
 		super();
+		this.paginator = new Paginator(this, 3, '#king-games', htmlTemplates.getGameTemplate);
 	}
 
 	readGames(callback) {

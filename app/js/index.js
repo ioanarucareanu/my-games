@@ -3,19 +3,24 @@
 let portofolio = new Portofolio();
 let kingColl = new KingCollection();
 
-let paginatorPortofolio = new Paginator(portofolio, 6, '#portofolio-games', htmlTemplates.getGameTemplate);
-paginatorPortofolio.loadPage();
+portofolio.paginator.loadPage();
 
 
-let paginatorKing;
 kingColl.readGames(() => {
 	//TODO something with err
 	kingColl.markGamesAsUsed(portofolio.getAll());
-	paginatorKing = new Paginator(kingColl, 3, '#king-games', htmlTemplates.getGameTemplate);
-	paginatorKing.loadPage();
+	kingColl.paginator.loadPage();
 });
 
 //Events
+
+let searchPortofolio = document.getElementById('searchPortofolio');
+
+searchPortofolio.onkeydown = (event) => {
+	if (event.keyCode == 13 || event.which == 13) {
+		portofolio.searchByName(searchPortofolio.value);
+	}
+};
 
 document.querySelector('#king-games').onclick = (e) => {
 	if (Array.from(e.target.classList).indexOf('btn-add') > -1) {
@@ -23,10 +28,11 @@ document.querySelector('#king-games').onclick = (e) => {
 		let game = kingColl.getGameById(gameId);
 
 		portofolio.addItem(game);
+		portofolio.storeGames();
 		kingColl.useGame(gameId);
 
 		utils.dom.hide(document.querySelector(`#king-games .${game.short} .btn-add`));
-		paginatorPortofolio.loadPage();
+		portofolio.paginator.loadPage();
 	}
 };
 
@@ -36,17 +42,16 @@ document.querySelector('#portofolio-games').onclick = (e) => {
 	}
 };
 
-function openGameView(gameId) {
+function openGameView(title, thumbnail, playUrl) {
 	let modal = document.getElementById('view-modal');
 	let span = modal.querySelector('.close');
 
 	modal.style.display = "block";
-	span.onclick = () => modal.style.display = "none";
-
-	// When the user clicks anywhere outside of the modal, close it
-	window.onclick = (event) => {
-		if (event.target == modal) {
-			modal.style.display = "none";
-		}
+	span.onclick = () => {
+		modal.style.display = "none";
 	};
+	document.getElementById('game-name').innerHTML = title;
+	document.querySelector('#game-screenshot img').src = thumbnail;
+	document.getElementById('game-play').href = playUrl;
+
 }

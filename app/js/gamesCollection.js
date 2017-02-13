@@ -31,10 +31,11 @@ class GamesCollection {
 	searchByName(name) {
 		console.log(`Searching for ${name}.....`);
 		let regex = new RegExp(name, 'i');
-		let matchedGames = Object.values(this.games).filter(game => {
-			return game.name.search(regex) !== -1;
+		let matchedGames = Object.keys(this.games).filter(gameId => {
+			return this.games[gameId].name.search(regex) !== -1;
 		});
-		console.log(`Found ${matchedGames.length}.`);
-		return matchedGames;
+		console.log(`Found ${matchedGames}.`);
+		this.gamesIds = matchedGames;
+		this.paginator.loadPage();
 	}
 }
