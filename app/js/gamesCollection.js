@@ -1,3 +1,5 @@
+'use strict';
+
 class GamesCollection {
 
 	constructor() {
@@ -5,8 +7,8 @@ class GamesCollection {
 		this.gamesIds = [];
 	}
 
-	loadGames() {
-
+	readGames() {
+		//to be implemented in the child classes
 	}
 
 	getAll() {

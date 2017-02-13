@@ -1,19 +1,23 @@
+'use strict';
+
 class Paginator {
 
 	constructor(collection, itemsPerPage, parentContainerSelector, itemTemplateFct) {
 		this.collection = collection;
 		this.itemsPerPage = itemsPerPage;
-		this.parentContainer = document.querySelector(parentContainerSelector);
 		this.itemTemplateFct = itemTemplateFct;
 
 		this.currPage = 1;
 
-		this.parentContainer.querySelector('.btn-next').addEventListener('click', () => {
-			this.next();
-		});
-		this.parentContainer.querySelector('.btn-prev').addEventListener('click', () => {
-			this.prev();
-		});
+		let parentContainer = document.querySelector(parentContainerSelector);
+		this.components = {
+			grid: parentContainer.querySelector('.grid'),
+			btnNext: parentContainer.querySelector('.btn-next'),
+			btnPrev: parentContainer.querySelector('.btn-prev'),
+			pageSpan: parentContainer.querySelector('.page')
+		};
+		this.components.btnNext.onclick = () => this.next();
+		this.components.btnPrev.onclick = () => this.prev();
 	}
 
 	next() {
@@ -31,31 +35,36 @@ class Paginator {
 	}
 
 	loadPage() {
-		let grid =  this.parentContainer.querySelector('.grid');
-		let btnNext = this.parentContainer.querySelector('.btn-next');
-		let btnPrev =  this.parentContainer.querySelector('.btn-prev');
-		let pageSpan =  this.parentContainer.querySelector('.page');
-
 		// Validate page
 		// if (this.currPage < 1) this.currPage = 1;
 		// if (this.currPage > this.numPages()) this.currPage = this.numPages();
 
-		if (Object.keys(this.collection.getAll()).length == 0) {
-			grid.innerHTML = 'No games to show';
+		if (Object.keys(this.collection.getAll()).length === 0) {
+			this.components.grid.innerHTML = 'Nothing to show';
 		}
 		else {
-			grid.innerHTML = '';
+			this.components.grid.innerHTML = '';
 			// Get elements from collection, apply template and add them to the grid
 			let items = this.collection.getXGamesFrom(this.itemsPerPage, (this.currPage - 1) * this.itemsPerPage);
 			items.forEach(item => {
-				grid.innerHTML += this.itemTemplateFct(item);
+				this.components.grid.innerHTML += this.itemTemplateFct(item);
 			});
 		}
 
-		pageSpan.innerHTML = this.currPage;
+		this.components.pageSpan.innerHTML = this.currPage;
 
-		this.currPage === 1 ? utils.hide(btnPrev) : utils.show(btnPrev);
-		this.currPage === this.numPages() ? utils.hide(btnNext) : utils.show(btnNext);
+		if (this.currPage === 1) {
+			utils.dom.hide(this.components.btnPrev);
+		}
+		else {
+			utils.dom.show(this.components.btnPrev);
+		}
+		if (this.currPage === this.numPages()) {
+			utils.dom.hide(this.components.btnNext)
+		}
+		else {
+			utils.dom.show(this.components.btnNext)
+		}
 	}
 
 	numPages() {

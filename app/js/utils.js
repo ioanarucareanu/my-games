@@ -1,3 +1,5 @@
+'use strict';
+
 let utils = {
 
 	loadJSON(path, success, error) {
@@ -17,22 +19,23 @@ let utils = {
 		xhr.send();
 	},
 
-	findAncestor(elem, className) {
-		while ((elem = elem.parentElement) && !elem.classList.contains(className));
-		return elem;
-	},
+	dom: {
+		findAncestor(elem, className) {
+			while ((elem = elem.parentElement) && !elem.classList.contains(className));
+			return elem;
+		},
+		getAttributeValue(elem, attributeName) {
+			if(attributeName in elem.attributes) {
+				return elem.attributes[attributeName].nodeValue;
+			}
+		},
 
-	getAttributeValue(elem, attributeName) {
-		if(attributeName in elem.attributes) {
-			return elem.attributes[attributeName].nodeValue;
+		hide(elem) {
+			elem.classList.add('hidden');
+		},
+
+		show(elem) {
+			elem.classList.remove('hidden');
 		}
 	},
-
-	hide(elem) {
-		elem.classList.add('hidden');
-	},
-
-	show(elem) {
-		elem.classList.remove('hidden');
-	}
 };

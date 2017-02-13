@@ -1,10 +1,12 @@
+'use strict';
+
 class KingCollection extends GamesCollection {
 
 	constructor() {
 		super();
 	}
 
-	loadGames(callback) {
+	readGames(callback) {
 		utils.loadJSON('../data/games.json',
 			data => {
 				data.games.forEach(_game => {
@@ -22,7 +24,7 @@ class KingCollection extends GamesCollection {
 	markGamesAsUsed(gameCollection) {
 		Object.keys(gameCollection).forEach(game => {
 			if (this.games[game.short]) {
-				this.games[game.short] = used;
+				this.games[game.short].used = true;
 			}
 		});
 	}

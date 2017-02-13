@@ -1,3 +1,5 @@
+'use strict';
+
 class Game {
 
 	constructor(name, short, url, tags, hasBoosters, used = false) {
@@ -9,7 +11,7 @@ class Game {
 		this.used = used;
 	}
 	smallImage() {
-		return `http://royal1.midasplayer.com/images/games/${this.short}/${this.short}_60x60.gif`
+		return `http://royal1.midasplayer.com/images/games/${this.short}/${this.short}_60x60.gif`;
 	}
 	middleImage() {
 		return `http://royal1.midasplayer.com/images/games/${this.short}/${this.short}_81x46.gif`;

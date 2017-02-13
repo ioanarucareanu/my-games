@@ -1,13 +1,14 @@
+'use strict';
+
 let portofolio = new Portofolio();
 let kingColl = new KingCollection();
-portofolio.loadGames();
 
 let paginatorPortofolio = new Paginator(portofolio, 6, '#portofolio-games', htmlTemplates.getGameTemplate);
 paginatorPortofolio.loadPage();
 
 
 let paginatorKing;
-kingColl.loadGames(() => {
+kingColl.readGames(() => {
 	//TODO something with err
 	kingColl.markGamesAsUsed(portofolio.getAll());
 	paginatorKing = new Paginator(kingColl, 3, '#king-games', htmlTemplates.getGameTemplate);
@@ -18,13 +19,13 @@ kingColl.loadGames(() => {
 
 document.querySelector('#king-games').onclick = (e) => {
 	if (Array.from(e.target.classList).indexOf('btn-add') > -1) {
-		let gameId = utils.getAttributeValue(e.target, 'data-game-id');
+		let gameId = utils.dom.getAttributeValue(e.target, 'data-game-id');
 		let game = kingColl.getGameById(gameId);
 
 		portofolio.addItem(game);
 		kingColl.useGame(gameId);
 
-		utils.hide(document.querySelector(`#king-games .${game.short} .btn-add`));
+		utils.dom.hide(document.querySelector(`#king-games .${game.short} .btn-add`));
 		paginatorPortofolio.loadPage();
 	}
 };
@@ -47,5 +48,5 @@ function openGameView(gameId) {
 		if (event.target == modal) {
 			modal.style.display = "none";
 		}
-	}
+	};
 }

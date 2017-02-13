@@ -1,15 +1,18 @@
+'use strict';
+
 class Portofolio extends GamesCollection {
 
 	constructor() {
 		super();
+		this.readGames();
 	}
 
-	loadGames() {
+	readGames() {
 		let data = JSON.parse(localStorage.getItem('portofolio')) || {};
 		let games = Object.keys(data);
 		games.forEach(short => {
 			let game = data[short];
-			this.games[short] = new Game(game.name, game.short, game.url, game.tags, game,hasBoosters, game.used);
+			this.games[short] = new Game(game.name, game.short, game.url, game.tags, game.hasBoosters, game.used);
 		});
 		this.gamesIds = Object.keys(this.games);
 	}
@@ -31,7 +34,13 @@ class Portofolio extends GamesCollection {
 	}
 
 	removeItem(shortName) {
+		if (!(shortName in this.games)) {
+			return;
+		}
 		delete this.games[shortName];
-		delete this.gamesIds(shortName);
+		let index = this.gamesIds.indexOf(shortName);
+		if (index > -1) {
+			this.gamesIds.splice(index, 1);
+		}
 	}
-};
+}
