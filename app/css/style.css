@@ -23,10 +23,13 @@ header > div.menu-item {
 }
 
 .menu-item > a {
-    /*color: #ff6a00;*/
     color: #595554;
     text-decoration: none;
     font-size: 1.2em;
+}
+
+.menu-item.active > a {
+    color: #ff6a00;
 }
 
 header > #icon-container {

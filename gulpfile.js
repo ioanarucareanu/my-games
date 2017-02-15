@@ -1,32 +1,51 @@
-'use strict';
+let gulp = require('gulp');
 
-let gulp  = require('gulp');
+let clean = require('gulp-clean');
 let jshint = require('gulp-jshint');
-let sourcemaps = require('gulp-sourcemaps');
 let concat = require('gulp-concat');
-let gutil = require('gulp-util');
+let uglify = require('gulp-uglify');
+let useref = require('gulp-useref');
 
-// define the default task and add the watch task to it
-gulp.task('default', ['watch']);
+let bases = {
+	app: 'app/',
+	dist: 'dist/',
+};
 
-// configure the jshint task
+let paths = {
+	scripts: ['js/**/*.js'],
+	styles: ['css/style.css'],
+	html: ['index.html'],
+	images: ['images/**/*.png', 'images/**/*.svg'],
+	data: ['data/*.json']
+};
+
+gulp.task('clean', function() {
+	return gulp.src(bases.dist)
+		.pipe(clean());
+});
+
 gulp.task('jshint', function() {
 	return gulp.src('app/js/**/*.js')
 		.pipe(jshint())
 		.pipe(jshint.reporter('jshint-stylish'));
 });
 
-gulp.task('build-js', function() {
-	return gulp.src('app/js/**/*.js')
-		.pipe(sourcemaps.init())
-		.pipe(concat('bundle.js'))
-		//only uglify if gulp is ran with '--type production'
-		.pipe(gutil.env.type === 'production' ? uglify() : gutil.noop())
-		.pipe(sourcemaps.write())
-		.pipe(gulp.dest('dist/js'));
+gulp.task('useref', ['clean'], function(){
+	return gulp.src('app/*.html')
+		.pipe(useref())
+		// .pipe(uglify()) //left out because uglify does not support ES6
+		.pipe(gulp.dest(bases.dist))
 });
 
-// configure which files to watch and what tasks to use on file changes
-gulp.task('watch', function() {
-	gulp.watch('app/js/**/*.js', ['jshint']);
+gulp.task('copy', ['clean'], function() {
+	gulp.src(paths.data)
+		.pipe(gulp.dest(bases.dist + 'data'));
+
+	gulp.src(paths.images, {cwd: bases.app})
+		.pipe(gulp.dest(bases.dist + 'images'));
+
+	gulp.src(paths.styles, {cwd: bases.app})
+		.pipe(gulp.dest(bases.dist + 'css'));
 });
+
+gulp.task('default', ['clean', 'useref', 'copy']);

@@ -6,10 +6,10 @@
 </head>
 <body>
 <header>
-	<div class="menu-item"><a href="index.html">My games</a></div>
+	<div class="menu-item" id="menu-item-index"><a href="index.html">My games</a></div>
 	<div id="icon-container" class="menu-item">
 	</div>
-	<div class="menu-item"><a href="#" onclick="showAllKingCollection()">All games</a></div>
+	<div class="menu-item" id="menu-item-all"><a href="#" onclick="showAllKingCollection();">All games</a></div>
 </header>
 
 <div id='main'>
@@ -93,6 +93,7 @@
 </div>
 
 <footer></footer>
+<!--build:js js/main.min.js -->
 <script type="text/javascript" src="js/games/game.js"></script>
 <script type="text/javascript" src="js/templates.js"></script>
 <script type="text/javascript" src="js/utils.js"></script>
@@ -101,5 +102,6 @@
 <script type="text/javascript" src="js/games/portofolio.js"></script>
 <script type="text/javascript" src="js/grid/grid.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
+<!-- endbuild -->
 </body>
 </html>
