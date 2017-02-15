@@ -1,7 +1,19 @@
 (function() {
 	'use strict';
 
+	/**
+	 * The Game class.
+	 */
 	class Game {
+		/**
+		 * Constructor for every game object.
+		 * @param name - the name of the game
+		 * @param short - the short name, used also as identifier
+		 * @param url - the play url
+		 * @param tags - the game's tags
+		 * @param hasBoosters - flag indicating whether the game has boosters or not
+		 * @param used - flag indicating whether the game has been already saved by the user
+		 */
 		constructor(name, short, url, tags, hasBoosters, used = false) {
 			this.name = name;
 			this.short = short;

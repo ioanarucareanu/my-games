@@ -6,8 +6,8 @@
 </head>
 <body>
 <header>
-	<div class="menu-item" id="menu-item-index"><a href="index.html">My games</a></div>
-	<div id="icon-container" class="menu-item">
+	<div class="menu-item" id="menu-item-index"><a href="#" onclick="goToHome();">My games</a></div>
+	<div id="icon-container" class="menu-item" onclick="goToHome();">
 	</div>
 	<div class="menu-item" id="menu-item-all"><a href="#" onclick="showAllKingCollection();">All games</a></div>
 </header>
@@ -23,7 +23,7 @@
 			</div>
 		</div>
 		<div class="coll-grid">
-			Browse through the King games and add items to your portofolio.
+			<span class="empty">Browse through the King games and add items to your portofolio.</span>
 		</div>
 		<div class="coll-pagination hidden">
 			<a><span class="icon btn-prev"> < </span></a>

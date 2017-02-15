@@ -24,20 +24,18 @@ utils.loadJSON('../data/games.json',
 		gridKing.next();
 	},
 	err => {
-		//TODO error
+		console.log('File could not be read/ found');
 	}
 );
 
-//Events
+let searchPortofolioInput = document.getElementById('searchPortofolio');
 
-let searchPortofolio = document.getElementById('searchPortofolio');
-
-searchPortofolio.onkeyup = (event) => {
-	if (searchPortofolio.value === '') {
+searchPortofolioInput.onkeyup = (event) => {
+	if (searchPortofolioInput.value === '') {
 		gridPortofolio.reset();
 	}
 	if (event.keyCode == 13 || event.which == 13) {
-		gridPortofolio.searchByName(searchPortofolio.value);
+		gridPortofolio.searchByName(searchPortofolioInput.value);
 	}
 };
 
@@ -115,4 +113,8 @@ function openGameView(gameId) {
 		}
 
 	}
+}
+
+function goToHome() {
+	window.location = 'index.html';
 }

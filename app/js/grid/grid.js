@@ -1,7 +1,16 @@
 (function() {
 	'use strict';
 
+	/**
+	 * Grid class used for paginating a collection and rendering search results.
+	 */
 	class Grid {
+		/**
+		 * Given the number of items per page and the HTML container selector, initializes all the required components
+		 * and events.
+		 * @param itemsPerPage - the number of items per page
+		 * @param parentSelector - the holding container selector
+		 */
 		constructor(itemsPerPage, parentSelector) {
 			this.itemsPerPage = itemsPerPage;
 			this.currPage = 0;
@@ -20,6 +29,11 @@
 
 		}
 
+		/**
+		 * Initializes the grid with a given collection. Builds the array of ids that will be used for
+		 * pagination and search.
+		 * @param coll - an input collection
+		 */
 		setCollection(coll) {
 			this.collection = coll;
 			this.ids = Object.keys(coll.getAll());
@@ -34,17 +48,30 @@
 			this._loadPage();
 		}
 
+		/**
+		 * Append an element to the array of ids and reloads the page.
+		 * @param id
+		 */
 		append(id) {
 			this.ids.push(id);
 			this._loadPage();
 		}
 
+		/**
+		 * Removes the element with the given id from the grid and reloads the page.
+		 * @param id
+		 */
 		remove(id) {
 			let index = this.ids.indexOf(id);
 			this.ids.splice(index, 1);
 			this._loadPage();
 		}
 
+		/**
+		 * Returns the next items that should follow in the next page of the grid.
+		 * @returns {Array} - an array of ids
+		 * @private
+		 */
 		_getNextItems() {
 			let items = [];
 			let currIndex = (this.currPage - 1) * this.itemsPerPage;
@@ -54,6 +81,9 @@
 			return items;
 		}
 
+		/**
+		 * Loads the next page in the grid.
+		 */
 		next() {
 			if (this.currPage < this._numPages()) {
 				this.currPage++;
@@ -61,6 +91,9 @@
 			}
 		}
 
+		/**
+		 * Loads the previous page in the grid.
+		 */
 		prev() {
 			if (this.currPage > 1) {
 				this.currPage--;
@@ -68,6 +101,10 @@
 			}
 		}
 
+		/**
+		 * Searches the items in the grid's collection whose name matches a given value and reloads the current page.
+		 * @param name - the searched name
+		 */
 		searchByName(name) {
 			let regex = new RegExp(name, 'i');
 			let matched = this.ids.filter(id => {
@@ -89,7 +126,7 @@
 			}
 
 			if (this.ids.length === 0) {
-				this.components.grid.innerHTML = 'Browse through the King games and add items to your portofolio.';
+				this.components.grid.innerHTML = '<span class="empty">Browse through the King games and add items to your portofolio.</span>';
 				utils.dom.hide(this.components.paginationContainer);
 				this.currPage = 0;
 			}
