@@ -21,7 +21,7 @@ be able to see the home page.
 
 Prerequisites:
 
-- Get Node.js.
+- Get Node.js. - We have used v6.9.2.
 - From under the root of the un-zipped folder, install the tool dependencies required for building: `npm install`
 - Install gulp-cli.
 
