@@ -42,6 +42,12 @@ header > #icon-container {
     margin-right: 1em;
 }
 
+@media all and (max-width: 640px) {
+    .menu-item > a {
+        font-size: .9em;
+    }
+}
+
 /* End Menu */
 
 #main {
@@ -53,6 +59,12 @@ header > #icon-container {
 #main > .coll-container {
     margin: 0 .4em;
     padding: 0 .5em;
+}
+
+@media all and (max-width: 640px) {
+    #main {
+        margin: 0 .1em;
+    }
 }
 
 /* Start Collection header */
@@ -95,6 +107,9 @@ header > #icon-container {
     .coll-container .header-with-controls {
         flex-direction: column;
     }
+    .coll-header > .coll-title {
+        font-size: 1em;
+    }
 }
 
 /* End collection header */
@@ -106,6 +121,8 @@ header > #icon-container {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
+    margin-left: -1em;
+    margin-right: -3em;
 }
 
 .coll-grid > .coll-item {
@@ -144,12 +161,9 @@ header > #icon-container {
 /* End Collection Grid */
 
 @media all and (max-width: 640px) {
-    #main {
-        margin: 0 .1em;
-    }
-
     .coll-container > .coll-grid {
         flex-direction: column;
+        margin-right: 0;
     }
 
     .coll-grid > .coll-item {
@@ -162,19 +176,35 @@ header > #icon-container {
         background-image: url('http://royal1.midasplayer.com/images/games/abracadabra/abracadabra_170x80.gif');
         background-size: cover;
     }
-
-    .menu-item > a {
-        font-size: .9em;
-    }
-
-    .coll-header > .coll-title {
-        font-size: 1em;
-    }
 }
 
-#portofolio-games {
+/* Start Pagination */
 
+.coll-pagination {
+    display: inline-block;
+    margin-top: 2em;
 }
+
+.coll-pagination .progress {
+    padding: 0 .4em;
+}
+
+.coll-pagination span.icon {
+    color: black;
+    cursor: pointer;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+}
+
+.coll-pagination a:hover span {
+    background-color: #ff6a00;
+    color: white;
+    border: 1px solid #ff6a00;
+}
+
+/* End Pagination */
 
 /* The Close Button */
 .close {
@@ -184,12 +214,12 @@ header > #icon-container {
     top: -0.4em;
     right: -0.2em;
     position: absolute;
-    color: black;
+    color: #595554;
+    text-shadow: 0 1px 0 #fff;
 }
 
 .close:hover,
 .close:focus {
-    color: #000;
     text-decoration: none;
     cursor: pointer;
 }
