@@ -6,7 +6,9 @@ portofolioColl.load();
 
 let gridPortofolio = new Grid(6, '#portofolio-games');
 gridPortofolio.setCollection(portofolioColl);
-gridPortofolio.next();
+if (!portofolioColl.isEmpty()) {
+	gridPortofolio.next();
+}
 
 let gridKing = new Grid(3, '#king-games');
 
@@ -30,45 +32,43 @@ utils.loadJSON('../data/games.json',
 
 let searchPortofolio = document.getElementById('searchPortofolio');
 
-searchPortofolio.onkeydown = (event) => {
+searchPortofolio.onkeyup = (event) => {
+	if (searchPortofolio.value === '') {
+		gridPortofolio.reset();
+	}
 	if (event.keyCode == 13 || event.which == 13) {
 		gridPortofolio.searchByName(searchPortofolio.value);
 	}
 };
 
-document.querySelector('#king-games').onclick = (e) => {
-	if (Array.from(e.target.classList).indexOf('btn-save') > -1) {
-		let gameId = utils.dom.getAttributeValue(e.target, 'data-game-id');
-		let game = kingColl.getGameById(gameId);
+function addToPortofolio(gameId) {
+	let game = kingColl.getGameById(gameId);
 
-		if (portofolioColl.hasItem(gameId)) {
-			return;
-		}
-		portofolioColl.addItem(game);
+	if (portofolioColl.hasItem(gameId)) {
+		return;
+	}
+	portofolioColl.addItem(game);
+	if (document.getElementById('portofolio-games')) {
 		gridPortofolio.append(gameId);
-
-		kingColl.toggleGameUsed(gameId);
-
-		utils.dom.hide(document.querySelector(`#king-games .${gameId} .btn-save`));
 	}
-};
 
-document.querySelector('#portofolio-games').onclick = (e) => {
-	if (Array.from(e.target.classList).indexOf('close') > -1) {
-		let gameId = utils.dom.getAttributeValue(e.target, 'data-game-id');
+	kingColl.toggleGameUsed(gameId);
 
-		portofolioColl.removeItem(gameId);
-		gridPortofolio.remove(gameId);
+	utils.dom.hide(document.querySelector(`#king-games .${gameId} .btn-save`)); //
+}
 
-		kingColl.toggleGameUsed(gameId);
+function removeFromPortofolio(gameId) {
+	portofolioColl.removeItem(gameId);
+	gridPortofolio.remove(gameId);
 
-		//If the correspondent King game is loaded on the page, make the save button available again.
-		let kingGame = document.querySelector(`#king-games .coll-item.${gameId}`);
-		if (kingGame) {
-			utils.dom.show(document.querySelector(`#king-games .${gameId} .btn-save`));
-		}
+	kingColl.toggleGameUsed(gameId);
+
+	//If the correspondent King game is loaded on the page, make the save button available again.
+	let kingGame = document.querySelector(`#king-games .coll-item.${gameId}`);
+	if (kingGame) {
+		utils.dom.show(document.querySelector(`#king-games .${gameId} .btn-save`));
 	}
-};
+}
 
 function showAllKingCollection() {
 	document.getElementById('main').innerHTML = htmlTemplates.getAllKingGamesTemplate();
@@ -78,7 +78,10 @@ function showAllKingCollection() {
 
 	let searchKing = document.getElementById('searchKing');
 
-	searchKing.onkeydown = (event) => {
+	searchKing.onkeyup = (event) => {
+		if (searchKing.value === '') {
+			gridKing.reset();
+		}
 		if (event.keyCode == 13 || event.which == 13) {
 			gridKing.searchByName(searchKing.value);
 		}

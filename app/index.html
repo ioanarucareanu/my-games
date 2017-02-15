@@ -6,10 +6,10 @@
 </head>
 <body>
 <header>
-	<div class="menu-item"><a href="#">My games</a></div>
+	<div class="menu-item"><a href="index.html">My games</a></div>
 	<div id="icon-container" class="menu-item">
 	</div>
-	<div class="menu-item"><a href="#">All games</a></div>
+	<div class="menu-item"><a href="#" onclick="showAllKingCollection()">All games</a></div>
 </header>
 
 <div id='main'>
@@ -19,12 +19,13 @@
 				<h3>Portofolio</h3>
 			</div>
 			<div class="coll-search">
-				<input type="search" id="searchPortofolio" class="search-input" results="5" placeholder="Search by name" />
+				<input type="text" id="searchPortofolio" class="search-input" results="5" placeholder="Search by name" />
 			</div>
 		</div>
 		<div class="coll-grid">
+			Browse through the King games and add items to your portofolio.
 		</div>
-		<div class="coll-pagination">
+		<div class="coll-pagination hidden">
 			<span class="icon btn-prev"> < </span>
 			<span class="progress">
 				<span class="curr-page"></span> / <span class="total-pages"></span>
@@ -38,7 +39,7 @@
 				<h3>All Games</h3>
 			</div>
 			<div class="coll-search">
-				<a href="#" onclick="showAllKingCollection()">Search more</a>
+				<a href="#" onclick="showAllKingCollection()">See all</a>
 			</div>
 		</div>
 		<div class="coll-grid">

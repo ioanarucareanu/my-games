@@ -145,15 +145,6 @@ header > #icon-container {
         margin: 0 .1em;
     }
 
-    /*#portofolio-games > .coll-header {*/
-        /*flex-direction: column;*/
-    /*}*/
-
-    /*#king-games > .coll-header {*/
-        /*padding: 1em 0;*/
-        /*height: 2em;*/
-    /*}*/
-
     .coll-container > .coll-grid {
         flex-direction: column;
     }

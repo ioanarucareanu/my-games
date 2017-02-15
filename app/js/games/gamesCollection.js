@@ -7,6 +7,10 @@
 			this.games = games || {};
 		}
 
+		isEmpty() {
+			return Object.keys(this.games).length === 0;
+		}
+
 		getGameById(id) {
 			return this.games[id];
 		}
