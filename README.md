@@ -6,6 +6,10 @@ user games portofolio. An initial collection of games is read from a .json file 
 the portofolio will be stored in the local storage of the browser. No third frameworks have been used, except 
 for the building gulp-related tools. 
 
+### Github
+
+https://github.com/ioanarucareanu/my-games.git
+
 
 ### Running the Application
 
