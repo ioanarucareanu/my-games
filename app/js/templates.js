@@ -3,23 +3,16 @@ let htmlTemplates = {
 	getGameTemplate(game) {
 		let className = game.used ? 'hidden' : '';
 		return `<div class="coll-item ${game.short}">` +
-			`<div class="item-img" style="background-image: url('${game.thumbnail()}')"></div>` +
+			`<div class="item-img" style="background-image: url('${game.thumbnail()}')" onclick="openGameView('${game.short}')"></div>` +
 			`<div class="item-title"><h4>${game.name}</h4></div>` +
 			`<span class="btn-save ${className}" onclick="addToPortofolio('${game.short}')"></span>` +
 			`<div>`;
 	},
 
 	getPortofolioGameTemplate(game) {
-		// `<div class="thumbnail ${game.short}">` +
-		// 	`<span class="close">&times;</span>` +
-		// 	`<a href="#" onclick="openGameView('${game.name}', '${game.largeImage()}', 'https://king.com${game.url}')"><img src="${game.thumbnail()}" class="responsive-image" /></a>` + `<div class="cell-content">` +
-		// 	`<h4>${game.name}</h4>` +
-		// 	`</div>` +
-		// 	`</div>`;
-
 		return `<div class="coll-item ${game.short}">` +
 			`<span class="close" onclick="removeFromPortofolio('${game.short}')">&times;</span>` +
-			`<div class="item-img" style="background-image: url('${game.thumbnail()}')"></div>` +
+			`<div class="item-img" style="background-image: url('${game.thumbnail()}')" onclick="openGameView('${game.short}')"></div>` +
 			`<div class="item-title"><h4>${game.name}</h4></div>` +
 			`<div>`;
 	},

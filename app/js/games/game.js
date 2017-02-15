@@ -5,10 +5,14 @@
 		constructor(name, short, url, tags, hasBoosters, used = false) {
 			this.name = name;
 			this.short = short;
-			this.url = url;
+			this._url = url;
 			this.tags = tags;
 			this.hasBoosters = hasBoosters;
 			this.used = used;
+		}
+
+		get url() {
+			return `http://royal1.midasplayer.com${this._url}`;
 		}
 		smallImage() {
 			return `http://royal1.midasplayer.com/images/games/${this.short}/${this.short}_60x60.gif`;

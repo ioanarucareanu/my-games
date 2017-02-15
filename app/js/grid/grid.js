@@ -115,7 +115,7 @@
 				utils.dom.hide(this.components.btnNext);
 			}
 			else {
-				utils.dom.show(this.components.btnNext)
+				utils.dom.show(this.components.btnNext);
 			}
 		}
 

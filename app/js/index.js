@@ -88,16 +88,31 @@ function showAllKingCollection() {
 	};
 }
 
-// function openGameView(title, thumbnail, playUrl) {
-// 	let modal = document.getElementById('view-modal');
-// 	let span = modal.querySelector('.close');
-//
-// 	modal.style.display = "block";
-// 	span.onclick = () => {
-// 		modal.style.display = "none";
-// 	};
-// 	document.getElementById('game-name').innerHTML = title;
-// 	document.querySelector('#game-screenshot img').src = thumbnail;
-// 	document.getElementById('game-play').href = playUrl;
-//
-// }
+function openGameView(gameId) {
+	let game = kingColl.getGameById(gameId);
+	let modal = document.getElementById('view-modal');
+	let span = modal.querySelector('.close');
+
+	modal.style.display = "block";
+	span.onclick = () => {
+		modal.style.display = "none";
+	};
+	document.getElementById('game-name').innerHTML = game.name;
+	document.querySelector('#game-screenshot img').src = game.largeImage();
+	document.getElementById('game-play').href = game.url;
+
+	initAction();
+
+	function initAction() {
+		let anchor = document.querySelector('#action a');
+		if (!game.used) {
+			anchor.innerHTML = 'Add to portofolio';
+			anchor.onclick = () => { addToPortofolio(game.short);initAction(); };
+		}
+		else {
+			anchor.innerHTML = 'Remove from portofolio';
+			anchor.onclick = () => { removeFromPortofolio(game.short); initAction(); };
+		}
+
+	}
+}
