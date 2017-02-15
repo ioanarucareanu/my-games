@@ -1,190 +1,205 @@
 body {
-    box-sizing: border-box;
-    margin: 1em auto;
-    width: 80%;
-    color: #595554;
     font: 14px/1.4285 appFont,Arial,sans-serif;
+    color: #595554;
     background-color: #f7f4ef;
     background-image: radial-gradient(circle at top,#fff 3%,hsla(0,0%,76%,0) 15%);
     background-repeat: no-repeat;
 }
 
-body #icon-container {
-    position: relative;
-    /*left: 50%;*/
-    width: 7em;
-    height: 5em;
-    /*margin-left: -3.5em;*/
-}
+/* Start Menu */
 
-#header {
-    position:relative;
-    height: 4em;
-    left: 50%;
-    width: 20em;
-    margin-left: -8.5em;
-    line-height: 5em;
-    /*font-size: 2em;*/
-    /*background-color: red;*/
-    /*top: 0;*/
-    /*margin-top: 1em;*/
-}
-
-#header div {
-    position: relative;
-    display: inline-block;
-    vertical-align: middle;
-    /*margin: auto 0.5em;*/
-}
-
-#header div.menu-item {
-    margin-top: 1em;
-    width: 5em;
-    text-align: center;
-}
-
-#logo {
-    display: block;
-    width: 100%;
-}
-
-.container {
-    margin: 30px auto;
-    max-width: 1200px;
-    display: flex;
-    flex-direction: column;
-}
-
-.container h3 {
-    float: left;
-    font-size: 1.65em;
-    margin: 0 0 30px;
-}
-
-/*.container .search {*/
-    /*float: right;*/
-    /*!*position: relative;*!*/
-/*}*/
-
-.container #searchPortofolio {
-    background-image: url(../images/searchicon.png);
-    background-position: 10px 12px;
-    background-repeat: no-repeat;
-    width: 40%;
-    font-size: 16px;
-    padding: 12px 20px 12px 42px;
-    border: 1px solid #ddd;
-    margin-bottom: 12px;
-
-    float:right;
-    /*position: absolute;*/
-    /*top: 0;*/
-    /*left: 0;*/
-    /*z-index: 11;*/
-    /*background: transparent;*/
-}
-
-/*.container #autocomplete{*/
-    /*position: absolute;*/
-    /*height: 100px;*/
-    /*top: 2px;*/
-    /*left: 1px;*/
-    /*background: transparent;*/
-    /*z-index: 10;*/
-    /*border: 1px solid green;*/
-/*}*/
-
-.grid {
-    margin-top: -20px;
-    margin-left: -20px;
-}
-
-.thumbnail {
-    margin-top: 20px;
-    margin-left: 20px;
-    box-shadow: 0 6px 10px 0 rgba(0,0,0,.3);
-    border-radius: 3px;
-}
-
-.thumbnail a {
-    text-decoration: none;
-    color: #595554;
-}
-
-.thumbnail a:active {
-    color: #595554;
-}
-
-.thumbnail .cell-content {
+header {
+    height: 6em;
     display: flex;
     justify-content: center;
 }
 
-.thumbnail img {
-    display: block;
-    width: 100%;
-    margin: 0 0 0;
-    max-height: 14em;
-    max-width: 100%;
+header > div.menu-item {
+    flex: 0 1 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-/*.thumbnail:hover img {*/
-    /*transform: scale(1.15);*/
-/*}*/
-
-@media screen and (min-width: 600px) {
-    .grid {
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
-    }
-    .thumbnail {
-        width: calc(50% - 20px);
-    }
-}
-
-@media screen and (min-width: 1000px) {
-    .thumbnail {
-        width: calc(100% / 3 - 20px);
-    }
-}
-
-/* Pagination TODO review */
-
-.grid-pagination {
-    border-radius: 3px;
+.menu-item > a {
+    /*color: #ff6a00;*/
     color: #595554;
-    line-height: 1;
-    font-size: 1.2em;
-    margin-top: 20px;
-}
-
-.icon {
-    font-size: 1.2em;
-}
-
-.grid-pagination .btn-prev, .grid-pagination .btn-next {
-    color: #595554;
-    cursor: pointer;
     text-decoration: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background-color: transparent;
-    height: 1em;
-    width: 1em;
+    font-size: 1.2em;
 }
 
-.grid-pagination .btn-prev, .grid-pagination .btn-next, .grid-pagination .progress {
-    line-height: 1;
-    box-sizing: content-box;
-    width: auto !important;
-    /*display: inline-block;*/
-    padding: .3em;
-    font-weight: 700;
+header > #icon-container {
+    background-image: url('../images/kingLogo.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 7em;
+    height: 6em;
+    margin-left: 1em;
+    margin-right: 1em;
 }
 
-/* END Pagination */
+/* End Menu */
+
+#main {
+    min-height: 800px;
+    margin: 0 3em;
+    padding: 0;
+}
+
+#main > .coll-container {
+    margin: 0 .4em;
+    padding: 0 .5em;
+}
+
+/* Start Collection header */
+
+.coll-container .coll-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.coll-header .coll-title, .coll-header .coll-search {
+    flex-basis: 50%;
+    display: flex;
+    align-items: center;
+}
+
+.coll-search .search-input {
+    background-image: url(../images/searchicon.png);
+    background-position: .6em;
+    background-repeat: no-repeat;
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: .6em;
+    width: 100%;
+    font-size: 1.2em;
+}
+
+.coll-header .coll-search a {
+    width: 100%;
+    text-align: right;
+    color: #595554;
+    font-size: 1.2em;
+}
+
+.coll-header > .coll-title {
+    font-size: 1.2em;
+}
+
+@media all and (max-width: 640px) {
+    .coll-container .header-with-controls {
+        flex-direction: column;
+    }
+}
+
+/* End collection header */
+
+/* Start Collection Grid */
+
+.coll-container > .coll-grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.coll-grid > .coll-item {
+    flex-basis: 30%;
+    height: 200px;
+    box-shadow: 0 6px 10px 0 rgba(0,0,0,.3);
+    border-radius: 3px;
+    position: relative;
+    margin-top: 2em;
+    margin-left: 1em;
+    display: flex;
+    flex-direction: column;
+}
+
+.coll-item > .item-img {
+    height: 80%;
+    width: 100%;
+    background-size: cover;
+    cursor: pointer;
+}
+
+.coll-item .item-title {
+    text-align: center;
+}
+
+.coll-item .btn-save {
+    background-image: url(../images/favs.png);
+    background-repeat: no-repeat;
+    position: absolute;
+    bottom: .3em;
+    right: .3em;
+    height: 22px;
+    width: 25px;
+}
+
+/* End Collection Grid */
+
+@media all and (max-width: 640px) {
+    #main {
+        margin: 0 .1em;
+    }
+
+    /*#portofolio-games > .coll-header {*/
+        /*flex-direction: column;*/
+    /*}*/
+
+    /*#king-games > .coll-header {*/
+        /*padding: 1em 0;*/
+        /*height: 2em;*/
+    /*}*/
+
+    .coll-container > .coll-grid {
+        flex-direction: column;
+    }
+
+    .coll-grid > .coll-item {
+        margin-top: 1em;
+    }
+
+    .coll-item > .item-img {
+        height: 80%;
+        width: 100%;
+        background-image: url('http://royal1.midasplayer.com/images/games/abracadabra/abracadabra_170x80.gif');
+        background-size: cover;
+    }
+
+    .menu-item > a {
+        font-size: .9em;
+    }
+
+    .coll-header > .coll-title {
+        font-size: 1em;
+    }
+}
+
+#portofolio-games {
+
+}
+
+/* The Close Button */
+.close {
+    font-size: 2.5em;
+    line-height: 1em;
+    font-weight: bold;
+    top: -0.4em;
+    right: -0.2em;
+    position: absolute;
+    color: black;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+/* End Close Button */
 
 /* The Modal (background) */
 .modal {
@@ -226,23 +241,6 @@ body #icon-container {
 @keyframes animatetop {
     from {top:-300px; opacity:0}
     to {top:0; opacity:1}
-}
-
-/* The Close Button */
-.close {
-    color: black;
-    font-size: 2.5em;
-    font-weight: bold;
-    top: -0.6em;
-    right: -0.2em;
-    position: absolute;
-}
-
-.close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
 }
 
 .modal-header {

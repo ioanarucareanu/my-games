@@ -1,83 +1,102 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>My games</title>
-	<!--build:js js/main.min.js -->
-
-	<!-- endbuild -->
-
-	<!--build:css css/styles.min.css-->
+	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<!--endbuild-->
 </head>
 <body>
-	<div id="header">
-		<div class="menu-item"><a href="#">My stuff</a></div>
-		<div id="icon-container">
-			<img src="images/kingLogo.svg" id="logo" />
-		</div>
-		<div class="menu-item"><a href="#">All stuff</a></div>
+<header>
+	<div class="menu-item"><a href="#">My games</a></div>
+	<div id="icon-container" class="menu-item">
 	</div>
-	<div id="portofolio-games" class="container">
-		<div>
-			<h3>Portofolio</h3>
-			<!--<div class="search">-->
-				<input type="search" id="searchPortofolio" results="5" placeholder="Search by name" />
-				<!--<input id="autocomplete" type="text" disabled="disabled" />-->
-			<!--</div>-->
-		</div>
-		<div class="grid"></div>
-		<span class="grid-pagination">
-			<span class="icon icon-prev btn-prev"> < </span>
-			<span class="progress">
-				<span class="curr-page">1</span> / <span class="total-pages">4</span>
-			</span>
-			<span class="icon icon-next btn-next"> > </span>
-		</span>
-	</div>
+	<div class="menu-item"><a href="#">All games</a></div>
+</header>
 
-	<div id="king-games" class="container">
-		<h3>King Games</h3>
-		<div class="grid"></div>
-		<span class="grid-pagination">
-			<span class="icon icon-prev btn-prev"> < </span>
-			<span class="progress">
-				<span class="curr-page">1</span> / <span class="total-pages">4</span>
-			</span>
-			<span class="icon icon-next btn-next"> > </span>
-		</span>
-	</div>
-
-	<!-- The Modal -->
-	<div id="view-modal" class="modal">
-
-		<!-- Modal content -->
-		<div class="modal-content">
-			<!--<div class="modal-header">-->
-				<span class="close">&times;</span>
-			<!--</div>-->
-			<!--<div class="modal-body">-->
-				<div id="game-screenshot">
-					<img src="" class="responsive-image" />
-				</div>
-				<h2 id="game-name"></h2>
-				<p>Rating</p>
-				<a href="#" id="game-play" class="btnKing">Play now</a>
-			<!--</div>-->
-			<div class="modal-footer">
+<div id='main'>
+	<div id="portofolio-games" class="coll-container">
+		<div class="coll-header header-with-controls">
+			<div class="coll-title">
+				<h3>Portofolio</h3>
+			</div>
+			<div class="coll-search">
+				<input type="search" id="searchPortofolio" class="search-input" results="5" placeholder="Search by name" />
 			</div>
 		</div>
+		<div class="coll-grid">
+		</div>
+		<div class="coll-pagination">
+			<span class="icon btn-prev"> < </span>
+			<span class="progress">
+				<span class="curr-page"></span> / <span class="total-pages"></span>
+			</span>
+			<span class="icon btn-next"> > </span>
+		</div>
 	</div>
+	<div id="king-games" class="coll-container">
+		<div class="coll-header">
+			<div class="coll-title">
+				<h3>All Games</h3>
+			</div>
+			<div class="coll-search">
+				<a href="#" onclick="showAllKingCollection()">Search more</a>
+			</div>
+		</div>
+		<div class="coll-grid">
+			<!--<div class="coll-item">-->
+				<!--<div class="item-img">-->
 
-	<script type="text/javascript" src="js/utils.js"></script>
-	<script type="text/javascript" src="js/game.js"></script>
-	<script type="text/javascript" src="js/gamesCollection.js"></script>
-	<script type="text/javascript" src="js/kingCollection.js"></script>
-	<script type="text/javascript" src="js/portofolio.js"></script>
-	<script type="text/javascript" src="js/templates.js"></script>
-	<script type="text/javascript" src="js/pagination.js"></script>
-	<script type="text/javascript" src="js/index.js"></script>
+				<!--</div>-->
+			<!--</div>-->
+			<!--<div class="coll-item">-->
+				<!--<div class="item-img">-->
 
+				<!--</div>-->
+			<!--</div>-->
+			<!--<div class="coll-item">-->
+				<!--<div class="item-img">-->
+
+				<!--</div>-->
+			<!--</div>-->
+		</div>
+		<div class="coll-pagination">
+			<span class="icon icon-prev btn-prev"> < </span>
+			<span class="progress">
+				<span class="curr-page"></span> / <span class="total-pages"></span>
+			</span>
+			<span class="icon icon-next btn-next"> > </span>
+		</div>
+	</div>
+</div>
+
+<!--&lt;!&ndash; The Modal &ndash;&gt;-->
+<!--<div id="view-modal" class="modal">-->
+
+	<!--&lt;!&ndash; Modal content &ndash;&gt;-->
+	<!--<div class="modal-content">-->
+		<!--&lt;!&ndash;<div class="modal-header">&ndash;&gt;-->
+		<!--<span class="close">&times;</span>-->
+		<!--&lt;!&ndash;</div>&ndash;&gt;-->
+		<!--&lt;!&ndash;<div class="modal-body">&ndash;&gt;-->
+		<!--<div id="game-screenshot">-->
+			<!--<img src="" class="responsive-image" />-->
+		<!--</div>-->
+		<!--<h2 id="game-name"></h2>-->
+		<!--<p>Rating</p>-->
+		<!--<a href="#" id="game-play" class="btnKing">Play now</a>-->
+		<!--&lt;!&ndash;</div>&ndash;&gt;-->
+		<!--<div class="modal-footer">-->
+		<!--</div>-->
+	<!--</div>-->
+<!--</div>-->
+
+<footer></footer>
+<script type="text/javascript" src="js/games/game.js"></script>
+<script type="text/javascript" src="js/templates.js"></script>
+<script type="text/javascript" src="js/utils.js"></script>
+<script type="text/javascript" src="js/games/gamesCollection.js"></script>
+<script type="text/javascript" src="js/games/kingCollection.js"></script>
+<script type="text/javascript" src="js/games/portofolio.js"></script>
+<script type="text/javascript" src="js/grid/grid.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
 </body>
 </html>
